@@ -1,0 +1,191 @@
+  PID TTY      STAT   TIME COMMAND
+    2 ?        S      0:00 [kthreadd]
+    3 ?        S      0:00  \_ [kworker/0:0]
+    4 ?        S<     0:00  \_ [kworker/0:0H]
+    6 ?        S      0:01  \_ [ksoftirqd/0]
+    7 ?        S      0:01  \_ [rcu_sched]
+    8 ?        S      0:00  \_ [rcu_bh]
+    9 ?        S      0:00  \_ [migration/0]
+   10 ?        S<     0:00  \_ [lru-add-drain]
+   11 ?        S      0:00  \_ [watchdog/0]
+   12 ?        S      0:00  \_ [cpuhp/0]
+   13 ?        S      0:00  \_ [kdevtmpfs]
+   14 ?        S<     0:00  \_ [netns]
+   15 ?        S      0:00  \_ [khungtaskd]
+   16 ?        S      0:00  \_ [oom_reaper]
+   17 ?        S<     0:00  \_ [writeback]
+   18 ?        S      0:00  \_ [kcompactd0]
+   19 ?        SN     0:00  \_ [ksmd]
+   20 ?        SN     0:00  \_ [khugepaged]
+   21 ?        S<     0:00  \_ [crypto]
+   22 ?        S<     0:00  \_ [kintegrityd]
+   23 ?        S<     0:00  \_ [bioset]
+   24 ?        S<     0:00  \_ [kblockd]
+   25 ?        S<     0:00  \_ [ata_sff]
+   26 ?        S<     0:00  \_ [md]
+   27 ?        S<     0:00  \_ [devfreq_wq]
+   28 ?        S<     0:00  \_ [watchdogd]
+   32 ?        S      0:00  \_ [kauditd]
+   33 ?        S      0:00  \_ [kswapd0]
+   34 ?        S<     0:00  \_ [vmstat]
+   35 ?        S<     0:00  \_ [bioset]
+   36 ?        S      0:00  \_ [ecryptfs-kthrea]
+   76 ?        S<     0:00  \_ [kthrotld]
+   77 ?        S<     0:00  \_ [acpi_thermal_pm]
+   78 ?        S<     0:00  \_ [bioset]
+   79 ?        S<     0:00  \_ [bioset]
+   80 ?        S<     0:00  \_ [bioset]
+   81 ?        S<     0:00  \_ [bioset]
+   82 ?        S<     0:00  \_ [bioset]
+   83 ?        S<     0:00  \_ [bioset]
+   84 ?        S<     0:00  \_ [bioset]
+   85 ?        S<     0:00  \_ [bioset]
+   86 ?        S      0:00  \_ [scsi_eh_0]
+   87 ?        S<     0:00  \_ [scsi_tmf_0]
+   88 ?        S      0:00  \_ [scsi_eh_1]
+   89 ?        S<     0:00  \_ [scsi_tmf_1]
+   95 ?        S<     0:00  \_ [ipv6_addrconf]
+  116 ?        S<     0:00  \_ [charger_manager]
+  117 ?        S<     0:00  \_ [bioset]
+  156 ?        S<     0:00  \_ [bioset]
+  157 ?        S<     0:00  \_ [bioset]
+  158 ?        S<     0:00  \_ [bioset]
+  159 ?        S<     0:00  \_ [bioset]
+  160 ?        S<     0:00  \_ [bioset]
+  161 ?        S<     0:00  \_ [bioset]
+  162 ?        S<     0:00  \_ [bioset]
+  163 ?        S<     0:00  \_ [bioset]
+  164 ?        S<     0:00  \_ [bioset]
+  171 ?        S<     0:02  \_ [kworker/0:1H]
+  246 ?        D      0:03  \_ [jbd2/vda1-8]
+  247 ?        S<     0:00  \_ [ext4-rsv-conver]
+  292 ?        S<     0:00  \_ [iscsi_eh]
+  311 ?        S<     0:00  \_ [kworker/u3:0]
+  312 ?        S<     0:00  \_ [ib-comp-wq]
+  313 ?        S<     0:00  \_ [ib_addr]
+  314 ?        S<     0:00  \_ [ib_mcast]
+  315 ?        S<     0:00  \_ [ib_nl_sa_wq]
+  319 ?        S<     0:00  \_ [ib_cm]
+  320 ?        S<     0:00  \_ [iw_cm_wq]
+  321 ?        S<     0:00  \_ [rdma_cm]
+ 1792 ?        S      0:00  \_ [kworker/0:4]
+24025 ?        S      0:00  \_ [kworker/u2:0]
+24211 ?        S<     0:00  \_ [loop0]
+24390 ?        S<     0:00  \_ [loop1]
+24816 ?        S      0:00  \_ [kworker/u2:2]
+27635 ?        S      0:00  \_ [kworker/u2:1]
+ 2831 ?        S      0:00  \_ [kworker/0:1]
+ 2839 ?        S      0:00  \_ [kworker/0:2]
+    1 ?        Ss     0:03 /sbin/init splash
+  277 ?        Ss     0:00 /lib/systemd/systemd-journald
+  339 ?        Ss     0:00 /sbin/lvmetad -f
+  344 ?        Ss     0:00 /lib/systemd/systemd-udevd
+  384 ?        Ssl    0:00 /lib/systemd/systemd-timesyncd
+  395 ?        Ssl    0:00 /usr/sbin/rsyslogd -n
+  398 ?        Ss     0:00 /usr/sbin/cron -f
+  399 ?        Ss     0:00 /lib/systemd/systemd-logind
+  400 ?        Ss     0:01 /usr/bin/dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation
+  545 ?        Ssl    0:00 /usr/lib/accountsservice/accounts-daemon
+  553 ?        Ss     0:00 /usr/sbin/conntrackd -C /etc/conntrackd/conntrackd.conf
+  623 ?        Ssl    0:00 /usr/lib/policykit-1/polkitd --no-debug
+  978 ?        Ss     0:00 /sbin/dhclient -1 -v -pf /run/dhclient.ens3.pid -lf /var/lib/dhcp/dhclient.ens3.leases -I -df /var/lib/dhcp/dhclient6.ens3.leases ens3
+ 1077 ?        Ss     0:00 /usr/sbin/sshd -D
+ 1860 ?        Ss     0:00  \_ sshd: stack [priv]
+ 1877 ?        S      0:07  |   \_ sshd: stack@pts/0
+ 1878 pts/0    Ss     0:00  |       \_ -bash
+ 7059 pts/0    R+     0:00  |           \_ ps afx
+10955 ?        Ss     0:00  \_ sshd: stack [priv]
+10969 ?        S      0:00      \_ sshd: stack@pts/1
+10970 pts/1    Ss+    0:00          \_ -bash
+ 1094 ?        Ss     0:00 /sbin/iscsid
+ 1095 ?        S<Ls   0:00 /sbin/iscsid
+ 1103 ?        Ss     0:00 /usr/sbin/haproxy-systemd-wrapper -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid
+ 1104 ?        S      0:00  \_ /usr/sbin/haproxy-master
+ 1105 ?        Ss     0:00      \_ /usr/sbin/haproxy -f /etc/haproxy/haproxy.cfg -p /run/haproxy.pid -Ds
+ 1143 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux
+ 1862 ?        Ss     0:00 /lib/systemd/systemd --user
+ 1863 ?        S      0:00  \_ (sd-pam)
+20761 ?        Ss     0:00 /bin/sh /usr/sbin/rabbitmq-server
+20771 ?        S      0:00  \_ /bin/sh -e /usr/lib/rabbitmq/bin/rabbitmq-server
+20998 ?        Sl     0:02      \_ /usr/lib/erlang/erts-8.2.1/bin/beam -W w -A 64 -P 1048576 -t 5000000 -stbt db -zdbbl 32000 -K true -B i -- -root /usr/lib/erlang -progname erl -- -home /var/lib/rabbitmq -- -pa /usr/lib/rabbitmq/lib/rabbitmq_server-0.0.0/ebin -noshell -noinput -s rabbit boot -sname rabbit@devstack -boot start_sasl -kernel inet_default_connect_options [{nodelay,true}] -sasl errlog_type error -sasl sasl_error_logger false -rabbit error_logger {file,"/var/log/rabbitmq/rabbit@devstack.log"} -rabbit sasl_error_logger {file,"/var/log/rabbitmq/rabbit@devstack-sasl.log"} -rabbit enabled_plugins_file "/etc/rabbitmq/enabled_plugins" -rabbit plugins_dir "/usr/lib/rabbitmq/lib/rabbitmq_server-0.0.0/plugins" -rabbit plugins_expand_dir "/var/lib/rabbitmq/mnesia/rabbit@devstack-plugins-expand" -os_mon start_cpu_sup false -os_mon start_disksup false -os_mon start_memsup false -mnesia dir "/var/lib/rabbitmq/mnesia/rabbit@devstack" -kernel inet_dist_listen_min 25672 -kernel inet_dist_listen_max 25672
+21087 ?        Ss     0:00          \_ erl_child_setup 65536
+21118 ?        Ss     0:00              \_ inet_gethost 4
+21119 ?        S      0:00                  \_ inet_gethost 4
+20932 ?        S      0:00 /usr/lib/erlang/erts-8.2.1/bin/epmd -daemon
+ 9503 ?        Ssl    0:00 /usr/sbin/libvirtd
+ 9538 ?        Ssl    0:00 /usr/sbin/virtlogd
+13026 ?        Ssl    4:11 /usr/sbin/mysqld
+13116 ?        Ss     0:00 SCREEN -d -m -S stack -t shell -s /bin/bash
+13122 pts/2    Ss+    0:00  \_ /bin/bash
+13509 pts/3    Ss     0:00  \_ /bin/bash
+13636 pts/3    S+     0:00  |   \_ /bin/bash /opt/stack/devstack/tools/dstat.sh /tmp/logs
+13637 pts/3    S+     0:03  |       \_ python2 /usr/bin/dstat -tcmndrylpg --output /tmp/logs/dstat-csv.log
+13638 pts/3    S+     0:38  |       \_ python2 /usr/bin/dstat -tcmndrylpg --top-cpu-adv --top-io-adv --top-mem --swap
+14503 pts/4    Ss     0:00  \_ /bin/bash
+14647 pts/4    S+     0:00  |   \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-public.ini
+14906 pts/4    S+     0:03  |       \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-public.ini
+14907 pts/4    S+     0:03  |       \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-public.ini
+14838 pts/5    Ss     0:00  \_ /bin/bash
+14992 pts/5    S+     0:00  |   \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-admin.ini
+15012 pts/5    S+     0:13  |       \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-admin.ini
+15013 pts/5    S+     0:13  |       \_ /usr/local/bin/uwsgi --ini /etc/keystone/keystone-uwsgi-admin.ini
+26600 pts/6    Ss     0:00  \_ /bin/bash
+26746 pts/6    S+     0:01  |   \_ /usr/bin/python /usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
+27008 pts/6    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
+27009 pts/6    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/glance-registry --config-file=/etc/glance/glance-registry.conf
+26937 pts/7    Ss     0:00  \_ /bin/bash
+27086 pts/7    S+     0:06  |   \_ /usr/bin/python /usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf
+27268 pts/7    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf
+27269 pts/7    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/glance-api --config-file=/etc/glance/glance-api.conf
+28014 pts/8    Ss     0:00  \_ /bin/bash
+28158 pts/8    S+     0:09  |   \_ /usr/bin/python /usr/local/bin/nova-api
+28422 pts/8    S+     0:01  |       \_ /usr/bin/python /usr/local/bin/nova-api
+28423 pts/8    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/nova-api
+28594 pts/8    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/nova-api
+28599 pts/8    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/nova-api
+28804 pts/9    Ss     0:00  \_ /bin/bash
+28948 pts/9    S+     0:03  |   \_ /usr/bin/python /usr/local/bin/neutron-server --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+29150 pts/9    S+     0:01  |       \_ /usr/bin/python /usr/local/bin/neutron-server --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+29151 pts/9    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/neutron-server --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+29152 pts/9    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/neutron-server --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+29153 pts/9    S+     0:00  |       \_ /usr/bin/python /usr/local/bin/neutron-server --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+29488 pts/10   Ss     0:00  \_ /bin/bash
+29632 pts/10   S+     0:02  |   \_ /usr/bin/python /usr/local/bin/neutron-linuxbridge-agent --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini
+31355 pts/11   Ss     0:00  \_ /bin/bash
+31499 pts/11   S+     0:06  |   \_ /usr/bin/python /usr/local/bin/nova-conductor --config-file /etc/nova/nova.conf
+32396 pts/11   S+     0:00  |       \_ /usr/bin/python /usr/local/bin/nova-conductor --config-file /etc/nova/nova.conf
+32397 pts/11   S+     0:01  |       \_ /usr/bin/python /usr/local/bin/nova-conductor --config-file /etc/nova/nova.conf
+32324 pts/12   Ss     0:00  \_ /bin/bash
+32476 pts/12   S+     0:03  |   \_ /usr/bin/python /usr/local/bin/nova-scheduler --config-file /etc/nova/nova.conf
+  358 pts/13   Ss     0:00  \_ /bin/bash
+  518 pts/13   S+     0:02  |   \_ /usr/bin/python /usr/local/bin/nova-novncproxy --config-file /etc/nova/nova.conf --web /opt/stack/noVNC
+ 1018 pts/14   Ss     0:00  \_ /bin/bash
+ 1177 pts/14   S+     0:03  |   \_ /usr/bin/python /usr/local/bin/nova-consoleauth --config-file /etc/nova/nova.conf
+ 1584 pts/15   Ss     0:00  \_ /bin/bash
+ 1738 pts/15   S+     0:00  |   \_ sg libvirt /usr/local/bin/nova-compute --config-file /etc/nova/nova.conf
+ 1764 pts/15   Sl+    0:04  |       \_ /usr/bin/python /usr/local/bin/nova-compute --config-file /etc/nova/nova.conf
+ 2292 pts/16   Ss     0:00  \_ /bin/bash
+ 2438 pts/16   S+     0:00  |   \_ /usr/local/bin/uwsgi --ini /etc/nova/placement-uwsgi.ini
+ 2463 pts/16   S+     0:03  |       \_ /usr/local/bin/uwsgi --ini /etc/nova/placement-uwsgi.ini
+ 2464 pts/16   S+     0:03  |       \_ /usr/local/bin/uwsgi --ini /etc/nova/placement-uwsgi.ini
+ 2977 pts/17   Ss     0:00  \_ /bin/bash
+ 3123 pts/17   S+     0:05  |   \_ /usr/bin/python /usr/local/bin/cinder-api --config-file /etc/cinder/cinder.conf
+ 3346 pts/17   S+     0:00  |       \_ /usr/bin/python /usr/local/bin/cinder-api --config-file /etc/cinder/cinder.conf
+ 3347 pts/17   S+     0:00  |       \_ /usr/bin/python /usr/local/bin/cinder-api --config-file /etc/cinder/cinder.conf
+ 3557 pts/18   Ss     0:00  \_ /bin/bash
+ 3703 pts/18   S+     0:03  |   \_ /usr/bin/python /usr/local/bin/cinder-scheduler --config-file /etc/cinder/cinder.conf
+ 4043 pts/19   Ss     0:00  \_ /bin/bash
+ 4192 pts/19   S+     0:05  |   \_ /usr/bin/python /usr/local/bin/cinder-volume --config-file /etc/cinder/cinder.conf
+ 4439 pts/19   S+     0:00  |       \_ /usr/bin/python /usr/local/bin/cinder-volume --config-file /etc/cinder/cinder.conf
+ 4636 pts/20   Ss     0:00  \_ /bin/bash
+ 4870 pts/20   S+     0:00      \_ sudo tail -f /var/log/apache2/horizon_error.log
+ 4876 pts/20   S+     0:00      |   \_ tail -f /var/log/apache2/horizon_error.log
+ 4871 pts/20   S+     0:00      \_ sed -u s/\\x1b/\o033/g
+15264 ?        Ssl    0:00 /usr/bin/memcached -m 64 -p 11211 -u memcache -l 127.0.0.1
+ 2827 ?        Ss     0:00 /usr/sbin/tgtd -f
+ 4585 ?        Ss     0:00 /usr/sbin/apache2 -k start
+ 4588 ?        Sl     0:00  \_ (wsgi:horizon)    -k start
+ 4589 ?        Sl     0:00  \_ (wsgi:horizon)    -k start
+ 4590 ?        Sl     0:00  \_ (wsgi:horizon)    -k start
+ 4591 ?        Sl     0:00  \_ /usr/sbin/apache2 -k start
+ 4592 ?        Sl     0:00  \_ /usr/sbin/apache2 -k start

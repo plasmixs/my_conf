@@ -1,0 +1,16 @@
+#These are installed when enable_service neutron is selected.
+#Must be trigerred from the neutron/devstack plugin
+
+acl
+dnsmasq-base
+ebtables
+haproxy
+iptables
+iputils-arping
+iputils-ping
+libmysqlclient-dev
+postgresql-server-dev-all
+python-mysqldb
+sqlite3
+sudo
+vlan

@@ -1,0 +1,14 @@
+General python packaging:
+
+https://packaging.python.org/distributing/
+
+
+PBR: python packing helper tool from openstack
+
+https://docs.openstack.org/developer/pbr/
+
+
+Other references:
+
+https://julien.danjou.info/blog/2017/packaging-python-with-pbr
+https://opensource.com/business/15/10/creating-a-tempest-plugin-for-openstack

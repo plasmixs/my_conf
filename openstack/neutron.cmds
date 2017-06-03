@@ -1,0 +1,31 @@
+$ source openrc admin demo
+
+
+$ openstack network list -f json
+
+In admin mode:
+
+$ openstack network create --provider-network-type local testnet
+
+In demo mode
+
+$ openstack network create testnet
+
+<old>$ openstack subnet create --subnet-range 10.1.2.0/24 --dhcp --network testnet testsubnet
+<with subnet pool>
+<default subnet pool>
+
+In admin mode:
+$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --network testnet --max 2 test
+(or)
+<old?>$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
+
+In demo mode:
+$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
+
+sudo ifconfig  brq8e5f2050-ea 10.1.2.4
+$ brctl show
+bridge name     bridge id               STP enabled     interfaces
+brq8e5f2050-ea          8000.cadd70099d2b       no              tap06ed860d-ec
+                                                        tap99d61310-a3
+                                                        tape32dc12e-9f

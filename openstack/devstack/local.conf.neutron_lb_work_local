@@ -1,0 +1,29 @@
+[[local|localrc]]
+ADMIN_PASSWORD=a
+DATABASE_PASSWORD=$ADMIN_PASSWORD
+RABBIT_PASSWORD=$ADMIN_PASSWORD
+SERVICE_PASSWORD=$ADMIN_PASSWORD
+HOST_IP=192.168.100.40
+disable_service tempest
+disable_service q-svc
+disable_service q-agt
+disable_service q-l3
+disable_service q-dhcp
+disable_service q-meta
+#enable_service neutron
+enable_service neutron-api
+enable_service neutron-agent
+enable_service neutron-dhcp
+enable_service neutron-meta
+#GIT_BASE=${GIT_BASE:-https://git.openstack.org}
+#OFFLINE=True
+#RECLONE=yes
+LOGDIR=/tmp/logs
+LOGFILE=$LOGDIR/stack.sh.logs
+#PIP_UPGRADE=True
+#ENABLE_IDENTITY_V2=False
+#IDENTITY_API_VERSION=3
+
+NEUTRON_AGENT=linuxbridge
+NEUTRON_PORT_SECURITY=False
+
