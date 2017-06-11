@@ -7,6 +7,10 @@ PBR: python packing helper tool from openstack
 
 https://docs.openstack.org/developer/pbr/
 
+pip references:
+
+sudo pip install -e $PWD/
+sudo pip uninstall 
 
 Other references:
 
