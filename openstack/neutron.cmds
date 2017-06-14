@@ -23,6 +23,8 @@ $ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --network 
 In demo mode:
 $ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
 
+#Replace with flavor c1
+
 sudo ifconfig  brq8e5f2050-ea 10.1.2.4
 $ brctl show
 bridge name     bridge id               STP enabled     interfaces
