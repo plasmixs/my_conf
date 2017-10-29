@@ -11,3 +11,5 @@ docker attach host1
 docker run -t -i --name ovs-build -v /shared:/shared s:ovs-build
 
 docker build <directory of dockerfile>
+
+docker run -i -t -v /home/rameshd/Work/Mysite:/Mysite --name pelican b809c25c316c
