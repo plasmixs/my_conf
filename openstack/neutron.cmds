@@ -1,33 +1,44 @@
-$ source openrc admin demo
+#Create operations
 
+#Load up as admin
+source openrc admin demo
 
-$ openstack network list -f json
+#List all network
+openstack network list -f json
 
-In admin mode:
+#Delete network
+openstack network delete private
 
-$ openstack network create --provider-network-type local testnet
+#Create local network
+#In admin mode:
+openstack network create --provider-network-type local testnet
 
-In demo mode
+#Create a subnet for the network
+openstack subnet create --subnet-range 10.1.2.0/24 --dhcp --network testnet testsubnet
+#TODO <with subnet pool>
+#TODO <default subnet pool>
 
-$ openstack network create testnet
+#Create server In admin mode:
+#TODO Replace with flavor c1
+openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --network testnet --max 2 test
+#(or)
+#<old?>$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
 
-<old>$ openstack subnet create --subnet-range 10.1.2.0/24 --dhcp --network testnet testsubnet
-<with subnet pool>
-<default subnet pool>
+#Delete operations
+#
 
-In admin mode:
-$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --network testnet --max 2 test
-(or)
-<old?>$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
+#Load up as demo user 
+source openrc demo demo
 
-In demo mode:
-$ openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
+#Create network
+openstack network create testnet
 
-#Replace with flavor c1
+#Create server In demo mode:
+openstack server create --image cirros-0.3.5-x86_64-disk --flavor 1 --nic net-id=testnet --max 2 test
 
-sudo ifconfig  brq8e5f2050-ea 10.1.2.4
-$ brctl show
-bridge name     bridge id               STP enabled     interfaces
-brq8e5f2050-ea          8000.cadd70099d2b       no              tap06ed860d-ec
-                                                        tap99d61310-a3
-                                                        tape32dc12e-9f
+#List servers
+openstack server list
+
+#Detail about server
+openstack server show test1
+
