@@ -30,3 +30,14 @@ IPTables
 #sudo iptables --policy FORWARD ACCEPT
 #sudo iptables -L
 
+Interface commands
+==================
+
+#list all interfaces
+ifconfig -a 
+
+ifconfig eth0 down
+
+#Interface delete
+ip link del virbr0-nic
+
