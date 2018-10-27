@@ -1,5 +1,10 @@
 #On a base 16.04 system (with basic utilities like openssh-server, git and vim).
 
+#create temporary user. In this case stack user
+
+sudo useradd -b /opt -m -s /bin/bash stack
+sudo usermod -aG sudo stack
+
 #su into root user
 sudo su
 
@@ -8,6 +13,12 @@ sudo su
 apt-get update
 apt-get install python-pip
 pip install -U pip
+
+#Additonal step would be to remove the python-pip
+#May require reboot to resolve confusion of pip versions
+
+apt-get purge python-pip
+apt-get autoremove
 
 #Addtitonal required packages
 
@@ -48,6 +59,11 @@ vim /etc/kolla/globals.yml
 #kolla_internal_vip_address: "192.168.56.30"
 #network_interface: "enp0s8"
 #neutron_external_interface: "enp0s9"
+#disable enable_haproxy as no and give the vip as network interface ip
+
+#Additionally for tacker
+#enable_barbican: "yes", enable_mistral: "yes" and enable_tacker: "yes"
+#heat is enabled by default else need to enable it.
 
 #Generate kolla passwords
 
@@ -73,6 +89,8 @@ kolla-ansible -i ./all-in-one deploy
 #Install openstack client
 
 pip install python-openstackclient
+#for tacker 
+pip install python-tackerclient
 
 #post deployment
 
@@ -86,287 +104,3 @@ kolla-ansible post-deploy
 #Debugging
 #Check docker images
 docker ps -a
-
-(work) root@ka:/opt/stack# docker ps -a
-CONTAINER ID        IMAGE                                                 COMMAND             CREATED             STATUS                   PORTS               NAMES
-4e642b12ef7a        kolla/ubuntu-source-horizon:rocky                     "kolla_start"       6 hours ago         Up 46 minutes                                horizon
-d9d9749c7da2        kolla/ubuntu-source-heat-engine:rocky                 "kolla_start"       6 hours ago         Up 46 minutes                                heat_engine
-bf495887bfee        kolla/ubuntu-source-heat-api-cfn:rocky                "kolla_start"       6 hours ago         Up 46 minutes                                heat_api_cfn
-9fe23f8b5d6e        kolla/ubuntu-source-heat-api:rocky                    "kolla_start"       6 hours ago         Up 46 minutes                                heat_api
-5d65cfa03a64        kolla/ubuntu-source-neutron-metadata-agent:rocky      "kolla_start"       6 hours ago         Up 46 minutes                                neutron_metadata_agent
-20c8568a8c58        kolla/ubuntu-source-neutron-l3-agent:rocky            "kolla_start"       6 hours ago         Up 46 minutes                                neutron_l3_agent
-040771860de8        kolla/ubuntu-source-neutron-dhcp-agent:rocky          "kolla_start"       6 hours ago         Up 46 minutes                                neutron_dhcp_agent
-942bd0c2cb53        kolla/ubuntu-source-neutron-openvswitch-agent:rocky   "kolla_start"       6 hours ago         Up 46 minutes                                neutron_openvswitch_agent
-7b8e39ef6030        kolla/ubuntu-source-neutron-server:rocky              "kolla_start"       6 hours ago         Up 46 minutes                                neutron_server
-01663765761c        kolla/ubuntu-source-openvswitch-vswitchd:rocky        "kolla_start"       6 hours ago         Up 46 minutes                                openvswitch_vswitchd
-b30440822740        kolla/ubuntu-source-openvswitch-db-server:rocky       "kolla_start"       6 hours ago         Up 46 minutes                                openvswitch_db
-0e685eb07155        kolla/ubuntu-source-nova-compute:rocky                "kolla_start"       6 hours ago         Up 46 minutes                                nova_compute
-602267367ddb        kolla/ubuntu-source-nova-novncproxy:rocky             "kolla_start"       6 hours ago         Up 46 minutes                                nova_novncproxy
-447d173a77d2        kolla/ubuntu-source-nova-consoleauth:rocky            "kolla_start"       6 hours ago         Up 46 minutes                                nova_consoleauth
-b692e452179c        kolla/ubuntu-source-nova-conductor:rocky              "kolla_start"       6 hours ago         Up 46 minutes                                nova_conductor
-0f1ae5b54dca        kolla/ubuntu-source-nova-scheduler:rocky              "kolla_start"       6 hours ago         Exited (0) 5 hours ago                       nova_scheduler
-6d091e6745fd        kolla/ubuntu-source-nova-api:rocky                    "kolla_start"       6 hours ago         Up 46 minutes                                nova_api
-1fc5db5c91c1        kolla/ubuntu-source-nova-placement-api:rocky          "kolla_start"       6 hours ago         Up 46 minutes                                placement_api
-a25fe9a11f35        kolla/ubuntu-source-nova-libvirt:rocky                "kolla_start"       6 hours ago         Up 46 minutes                                nova_libvirt
-7a6f1436aff2        kolla/ubuntu-source-nova-ssh:rocky                    "kolla_start"       6 hours ago         Up 46 minutes                                nova_ssh
-48be0a99f772        kolla/ubuntu-source-glance-api:rocky                  "kolla_start"       6 hours ago         Up 46 minutes                                glance_api
-27f3ef29b101        kolla/ubuntu-source-keystone-fernet:rocky             "kolla_start"       7 hours ago         Up 46 minutes                                keystone_fernet
-b556bc3f5b74        kolla/ubuntu-source-keystone-ssh:rocky                "kolla_start"       7 hours ago         Up 46 minutes                                keystone_ssh
-87a031819afe        kolla/ubuntu-source-keystone:rocky                    "kolla_start"       7 hours ago         Up 46 minutes                                keystone
-c582a8d5b63e        kolla/ubuntu-source-rabbitmq:rocky                    "kolla_start"       7 hours ago         Up 46 minutes                                rabbitmq
-17b436ca76c0        kolla/ubuntu-source-mariadb:rocky                     "kolla_start"       7 hours ago         Up 46 minutes                                mariadb
-ba9c9721f29c        kolla/ubuntu-source-memcached:rocky                   "kolla_start"       7 hours ago         Up 46 minutes                                memcached
-aad1aec4e5b9        kolla/ubuntu-source-keepalived:rocky                  "kolla_start"       8 hours ago         Up 46 minutes                                keepalived
-b30c626b4095        kolla/ubuntu-source-haproxy:rocky                     "kolla_start"       8 hours ago         Up 46 minutes                                haproxy
-9f28d0a78266        kolla/ubuntu-source-chrony:rocky                      "kolla_start"       8 hours ago         Up 46 minutes                                chrony
-1a3f5c6dc123        kolla/ubuntu-source-cron:rocky                        "kolla_start"       8 hours ago         Up 46 minutes                                cron
-a6cb78a66b03        kolla/ubuntu-source-kolla-toolbox:rocky               "kolla_start"       8 hours ago         Up 46 minutes                                kolla_toolbox
-16243dc080db        kolla/ubuntu-source-fluentd:rocky                     "kolla_start"       8 hours ago         Up 46 minutes                                fluentd
-(work) root@ka:/opt/stack# ps afx
-  PID TTY      STAT   TIME COMMAND
-    2 ?        S      0:00 [kthreadd]
-    3 ?        S      0:00  \_ [ksoftirqd/0]
-    5 ?        S<     0:00  \_ [kworker/0:0H]
-    6 ?        S      0:00  \_ [kworker/u4:0]
-    7 ?        S      0:07  \_ [rcu_sched]
-    8 ?        S      0:00  \_ [rcu_bh]
-    9 ?        S      0:00  \_ [migration/0]
-   10 ?        S      0:00  \_ [watchdog/0]
-   11 ?        S      0:00  \_ [watchdog/1]
-   12 ?        S      0:00  \_ [migration/1]
-   13 ?        S      0:00  \_ [ksoftirqd/1]
-   15 ?        S<     0:00  \_ [kworker/1:0H]
-   16 ?        S      0:00  \_ [kdevtmpfs]
-   17 ?        S<     0:00  \_ [netns]
-   18 ?        S<     0:00  \_ [perf]
-   19 ?        S      0:00  \_ [khungtaskd]
-   20 ?        S<     0:00  \_ [writeback]
-   21 ?        SN     0:00  \_ [ksmd]
-   22 ?        SN     0:02  \_ [khugepaged]
-   23 ?        S<     0:00  \_ [crypto]
-   24 ?        S<     0:00  \_ [kintegrityd]
-   25 ?        S<     0:00  \_ [bioset]
-   26 ?        S<     0:00  \_ [kblockd]
-   27 ?        S<     0:00  \_ [ata_sff]
-   28 ?        S<     0:00  \_ [md]
-   29 ?        S<     0:00  \_ [devfreq_wq]
-   34 ?        S      0:00  \_ [kswapd0]
-   35 ?        S<     0:00  \_ [vmstat]
-   36 ?        S      0:00  \_ [fsnotify_mark]
-   37 ?        S      0:00  \_ [ecryptfs-kthrea]
-   53 ?        S<     0:00  \_ [kthrotld]
-   54 ?        S<     0:00  \_ [acpi_thermal_pm]
-   55 ?        S<     0:00  \_ [bioset]
-   56 ?        S<     0:00  \_ [bioset]
-   57 ?        S<     0:00  \_ [bioset]
-   58 ?        S<     0:00  \_ [bioset]
-   59 ?        S<     0:00  \_ [bioset]
-   60 ?        S<     0:00  \_ [bioset]
-   61 ?        S<     0:00  \_ [bioset]
-   62 ?        S<     0:00  \_ [bioset]
-   63 ?        S      0:00  \_ [scsi_eh_0]
-   64 ?        S<     0:00  \_ [scsi_tmf_0]
-   65 ?        S      0:00  \_ [scsi_eh_1]
-   66 ?        S<     0:00  \_ [scsi_tmf_1]
-   72 ?        S<     0:00  \_ [ipv6_addrconf]
-   85 ?        S<     0:00  \_ [deferwq]
-   86 ?        S<     0:00  \_ [charger_manager]
-   87 ?        S<     0:00  \_ [bioset]
-  111 ?        S      0:00  \_ [kworker/0:2]
-  132 ?        S<     0:00  \_ [kpsmoused]
-  133 ?        S      0:00  \_ [kworker/1:2]
-  135 ?        S<     0:00  \_ [kworker/1:1H]
-  136 ?        S      0:00  \_ [scsi_eh_2]
-  137 ?        S<     0:00  \_ [scsi_tmf_2]
-  138 ?        S<     0:00  \_ [bioset]
-  160 ?        S<     0:00  \_ [kworker/0:1H]
-  162 ?        S      0:01  \_ [jbd2/sda1-8]
-  163 ?        S<     0:00  \_ [ext4-rsv-conver]
-  225 ?        S      0:00  \_ [kauditd]
-  254 ?        S      0:03  \_ [kworker/0:4]
-  394 ?        S<     0:00  \_ [iprt-VBoxWQueue]
-  611 ?        S<     0:00  \_ [ttm_swap]
- 6628 ?        S      0:00  \_ [kworker/1:0]
- 9374 ?        S      0:00  \_ [kworker/u4:2]
-    1 ?        Ss     0:02 /sbin/init splash
-  190 ?        Ss     0:00 /lib/systemd/systemd-journald
-  279 ?        Ss     0:00 /lib/systemd/systemd-udevd
-  481 ?        Ss     0:00 /sbin/dhclient -1 -v -pf /run/dhclient.enp0s3.pid -lf
-  507 ?        Ssl    0:00 /usr/lib/accountsservice/accounts-daemon
-  509 ?        Ss     0:00 /usr/bin/dbus-daemon --system --address=systemd: --no
-  525 ?        Ssl    0:00 /usr/sbin/rsyslogd -n
-  531 ?        Ss     0:00 /usr/sbin/cron -f
-  534 ?        Ss     0:00 /lib/systemd/systemd-logind
-  685 ?        Ss     0:00 /usr/sbin/sshd -D
-  755 ?        Ss     0:00  \_ sshd: stack [priv]
-  833 ?        S      0:00  |   \_ sshd: stack@pts/0
-  848 pts/0    Ss     0:00  |       \_ -bash
- 5384 pts/0    S      0:00  |           \_ sudo su
- 5393 pts/0    S      0:00  |               \_ su
- 5394 pts/0    S      0:00  |                   \_ bash
-12841 pts/0    R+     0:00  |                       \_ ps afx
-  835 ?        Ss     0:00  \_ sshd: stack [priv]
-  887 ?        S      0:01      \_ sshd: stack@pts/1
-  888 pts/1    Ss     0:00          \_ -bash
- 4284 pts/1    S+     0:02              \_ vim kolla-ansible.basic
-  687 ?        Ssl    0:04 /usr/bin/dockerd
-  717 ?        Ssl    0:00  \_ docker-containerd -l unix:///var/run/docker/libco
-  913 ?        Sl     0:00      \_ docker-containerd-shim 1a3f5c6dc123e646588d32
- 1027 pts/2    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1192 ?        Ss     0:00      |       \_ cron -f
-  914 ?        Sl     0:00      \_ docker-containerd-shim 4e642b12ef7a751b03b0e4
- 1046 pts/4    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1240 ?        Ss     0:00      |       \_ /usr/sbin/apache2 -DFOREGROUND
- 2224 ?        Sl     0:00      |           \_ (wsgi:horizon-htt -DFOREGROUND
- 2225 ?        Sl     0:00      |           \_ (wsgi:horizon-htt -DFOREGROUND
- 2226 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
- 2227 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
-  915 ?        Sl     0:00      \_ docker-containerd-shim 9fe23f8b5d6e1275a096bf
- 1036 pts/3    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1188 ?        Ss     0:04      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3143 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3144 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
-  916 ?        Sl     0:00      \_ docker-containerd-shim d9d9749c7da2cd577b5328
- 1028 pts/5    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1267 ?        Ss     1:04      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3181 ?        S      0:47      |           \_ /var/lib/kolla/venv/bin/python /v
- 3182 ?        S      0:47      |           \_ /var/lib/kolla/venv/bin/python /v
-  949 ?        Sl     0:00      \_ docker-containerd-shim b3044082274084186e9486
- 1008 pts/6    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1220 ?        Ss     0:00      |       \_ /bin/bash /usr/local/bin/start-ovsdb-
- 1745 ?        S      0:03      |           \_ /usr/sbin/ovsdb-server /var/lib/o
-  975 ?        Sl     0:00      \_ docker-containerd-shim aad1aec4e5b9955aae69ae
- 1019 pts/7    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1076 ?        Ss     0:00      |       \_ /usr/sbin/keepalived -nld -p /run/kee
- 1444 ?        S      0:00      |           \_ /usr/sbin/keepalived -nld -p /run
- 1446 ?        S      0:01      |           \_ /usr/sbin/keepalived -nld -p /run
-  988 ?        Sl     0:00      \_ docker-containerd-shim 9f28d0a78266ba1efe8470
- 1029 pts/8    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1107 ?        Ss     0:00      |       \_ /usr/sbin/chronyd -d -f /etc/chrony/c
- 1052 ?        Sl     0:00      \_ docker-containerd-shim b556bc3f5b74480df872dd
- 1133 pts/9    Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1333 ?        Ss     0:00      |       \_ /usr/sbin/sshd -D
- 1066 ?        Sl     0:00      \_ docker-containerd-shim 48be0a99f7728534903240
- 1191 pts/10   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1412 ?        Ss     1:02      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3152 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3153 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 1092 ?        Sl     0:00      \_ docker-containerd-shim 87a031819afe765f565b81
- 1189 pts/11   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1430 ?        Ss     0:00      |       \_ /usr/sbin/apache2 -DFOREGROUND
- 2181 ?        Sl     0:00      |           \_ (wsgi:keystone-pu -DFOREGROUND
- 2182 ?        Sl     0:00      |           \_ (wsgi:keystone-pu -DFOREGROUND
- 2208 ?        Sl     0:07      |           \_ (wsgi:keystone-ad -DFOREGROUND
- 2214 ?        Sl     0:07      |           \_ (wsgi:keystone-ad -DFOREGROUND
- 2215 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
- 2239 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
- 1111 ?        Sl     0:00      \_ docker-containerd-shim bf495887bfeed411913552
- 1172 pts/12   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1332 ?        Ss     0:04      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3140 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3141 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 1125 ?        Sl     0:00      \_ docker-containerd-shim ba9c9721f29c8e569869ad
- 1194 pts/13   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1400 ?        Ssl    0:01      |       \_ /usr/bin/memcached -v -l 192.168.56.3
- 1199 ?        Sl     0:00      \_ docker-containerd-shim 7b8e39ef60302a504d0b35
- 1327 pts/18   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1608 ?        Ss     0:07      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3190 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3191 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3192 ?        S      0:19      |           \_ /var/lib/kolla/venv/bin/python /v
- 3193 ?        S      0:19      |           \_ /var/lib/kolla/venv/bin/python /v
- 3194 ?        S      0:06      |           \_ /var/lib/kolla/venv/bin/python /v
- 3196 ?        S      0:06      |           \_ /var/lib/kolla/venv/bin/python /v
- 3197 ?        S      0:55      |           \_ /var/lib/kolla/venv/bin/python /v
- 1225 ?        Sl     0:00      \_ docker-containerd-shim 20c8568a8c58ca21224ab3
- 1310 pts/14   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1482 ?        Ss     0:00      |       \_ /bin/bash /usr/local/bin/neutron-l3-a
- 1921 ?        S      0:51      |       |   \_ /var/lib/kolla/venv/bin/python /v
- 3842 ?        S      0:00      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 4202 ?        Ss     0:00      |       \_ haproxy -f /var/lib/neutron/ns-metada
- 1241 ?        Sl     0:00      \_ docker-containerd-shim 040771860de86b1aeaf824
- 1315 pts/15   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1525 ?        Ss     0:59      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3424 ?        S      0:00      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3578 ?        Ss     0:00      |       \_ haproxy -f /var/lib/neutron/ns-metada
- 3642 ?        S      0:00      |       \_ dnsmasq --no-hosts --no-resolv --exce
- 1255 ?        Sl     0:00      \_ docker-containerd-shim 5d65cfa03a64ed383c0c06
- 1342 pts/16   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1488 ?        Ss     0:35      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3154 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3155 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 1268 ?        Sl     0:00      \_ docker-containerd-shim 27f3ef29b1015e3d529ea3
- 1366 pts/17   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1589 ?        Ss     0:00      |       \_ cron -f
- 1334 ?        Sl     0:00      \_ docker-containerd-shim 602267367ddbc903405463
- 1467 pts/20   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1724 ?        Ss     0:10      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 1346 ?        Sl     0:00      \_ docker-containerd-shim 01663765761c4f5651c5d3
- 1492 pts/19   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1650 ?        Ss     0:00      |       \_ bash /usr/local/bin/start-ovs
- 1943 ?        SLl    0:07      |           \_ /usr/sbin/ovs-vswitchd unix:/run/
- 1403 ?        Sl     0:00      \_ docker-containerd-shim 942bd0c2cb53230289c137
- 1574 pts/23   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1795 ?        Ss     0:59      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3326 ?        S      0:00      |           \_ ovsdb-client monitor tcp:127.0.0.
- 3331 ?        S      0:00      |           \_ ovsdb-client monitor tcp:127.0.0.
- 1415 ?        Sl     0:00      \_ docker-containerd-shim 17b436ca76c08359ccbd0b
- 1530 pts/21   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1828 ?        Ss     0:00      |       \_ /bin/bash /usr/bin/mysqld_safe
- 3000 ?        Sl     0:27      |           \_ /usr/sbin/mysqld --basedir=/usr -
- 1432 ?        Sl     0:00      \_ docker-containerd-shim a25fe9a11f3576712f4f86
- 1560 pts/22   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1678 ?        Ssl    0:02      |       \_ /usr/sbin/libvirtd --listen
- 1502 ?        Sl     0:00      \_ docker-containerd-shim 447d173a77d2d164ea6c53
- 1578 pts/24   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1835 ?        Ss     1:01      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 1507 ?        Sl     0:00      \_ docker-containerd-shim 6d091e6745fd273c0caeaa
- 1602 pts/25   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1744 ?        Ss     1:25      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3237 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3238 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3242 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 3243 ?        S      0:00      |           \_ /var/lib/kolla/venv/bin/python /v
- 1528 ?        Sl     0:00      \_ docker-containerd-shim 7a6f1436aff25c60e139e0
- 1594 pts/26   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1827 ?        Ss     0:00      |       \_ /usr/sbin/sshd -D
- 1593 ?        Sl     0:00      \_ docker-containerd-shim 1fc5db5c91c188510225dc
- 1637 pts/27   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1855 ?        Ss     0:00      |       \_ /usr/sbin/apache2 -DFOREGROUND
- 2190 ?        Sl     0:12      |           \_ (wsgi:placement-a -DFOREGROUND
- 2191 ?        Sl     0:11      |           \_ (wsgi:placement-a -DFOREGROUND
- 2192 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
- 2193 ?        Sl     0:00      |           \_ /usr/sbin/apache2 -DFOREGROUND
- 1612 ?        Sl     0:00      \_ docker-containerd-shim c582a8d5b63ea73cd8c8e6
- 1636 pts/28   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1857 ?        Ss     0:00      |       \_ /bin/sh -e /usr/lib/rabbitmq/bin/rabb
- 2778 ?        Sl     5:56      |       |   \_ /usr/lib/erlang/erts-9.2/bin/beam
- 2963 ?        Ss     0:00      |       |       \_ erl_child_setup 65536
- 3248 ?        Ss     0:00      |       |           \_ inet_gethost 4
- 3249 ?        S      0:00      |       |               \_ inet_gethost 4
- 2306 ?        S      0:00      |       \_ /usr/lib/erlang/erts-9.2/bin/epmd -da
- 1651 ?        Sl     0:00      \_ docker-containerd-shim 0e685eb07155e17f504fd4
- 1670 pts/29   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1763 ?        Ssl    1:11      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 1680 ?        Sl     0:00      \_ docker-containerd-shim b692e452179cd97a9fdb5d
- 1700 pts/30   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1860 ?        Ss     1:21      |       \_ /var/lib/kolla/venv/bin/python /var/l
- 3221 ?        S      0:58      |           \_ /var/lib/kolla/venv/bin/python /v
- 3222 ?        S      0:58      |           \_ /var/lib/kolla/venv/bin/python /v
- 1722 ?        Sl     0:00      \_ docker-containerd-shim a6cb78a66b03c043b7a233
- 1739 pts/31   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1871 ?        Ss     0:00      |       \_ sleep infinity
- 1746 ?        Sl     0:00      \_ docker-containerd-shim b30c626b40952c140efeb0
- 1776 pts/32   Ss+    0:00      |   \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1868 ?        Ss     0:00      |       \_ /usr/sbin/haproxy -W -db -f /etc/hapr
- 1975 ?        Ss     0:10      |           \_ /usr/sbin/haproxy -W -db -f /etc/
- 1764 ?        Sl     0:00      \_ docker-containerd-shim 16243dc080db4307030208
- 1801 pts/33   Ss+    0:00          \_ /usr/local/bin/dumb-init /bin/bash /usr/l
- 1903 ?        Ssl    0:03              \_ /opt/td-agent/embedded/bin/ruby /usr/
- 3016 ?        Sl     0:13                  \_ /opt/td-agent/embedded/bin/ruby -
-  701 tty1     Ss+    0:00 /sbin/agetty --noclear tty1 linux
-  709 ?        Ssl    0:00 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 109:116
-  810 ?        Ss     0:00 /lib/systemd/systemd --user
-  815 ?        S      0:00  \_ (sd-pam)
-(work) root@ka:/opt/stack#
-
